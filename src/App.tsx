@@ -4,6 +4,9 @@ import { Header } from './components/layout/Header'
 import { ChatFeed } from './components/chat/ChatFeed'
 import { InputBar } from './components/layout/InputBar'
 import { EditModal } from './components/modals/EditModal'
+import { ChartModal } from './components/modals/ChartModal'
+import { ReportModal } from './components/modals/ReportModal'
+import { SettingsModal } from './components/modals/SettingsModal'
 import { useTransactions } from './hooks/useTransactions'
 import { useSummary } from './hooks/useSummary'
 import { useParser } from './hooks/useParser'
@@ -14,6 +17,9 @@ export default function App() {
   const [year, setYear] = useState(now.getFullYear())
   const [month, setMonth] = useState(now.getMonth() + 1)
   const [editingTx, setEditingTx] = useState<Transaction | null>(null)
+  const [showChart, setShowChart] = useState(false)
+  const [showReport, setShowReport] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
 
   const { transactions, add, update, remove } = useTransactions(year, month)
   const { income, expense, net } = useSummary(transactions)
@@ -29,7 +35,7 @@ export default function App() {
     else setMonth(m => m + 1)
   }
 
-  async function handleSubmit(input: string, parsed: ParseResult) {
+  async function handleSubmit(input: string, _parsed: ParseResult) {
     const result = await parseInput(input)
     const tx: Transaction = {
       id: generateId(),
@@ -61,7 +67,7 @@ export default function App() {
         year={year} month={month}
         income={income} expense={expense} net={net}
         onPrev={handlePrev} onNext={handleNext}
-        onChart={() => {}} onReport={() => {}} onSettings={() => {}}
+        onChart={() => setShowChart(true)} onReport={() => setShowReport(true)} onSettings={() => setShowSettings(true)}
       />
       <ChatFeed transactions={transactions} onEdit={setEditingTx} />
       <InputBar onSubmit={handleSubmit} />
@@ -72,6 +78,15 @@ export default function App() {
           onDelete={handleDelete}
           onClose={() => setEditingTx(null)}
         />
+      )}
+      {showChart && (
+        <ChartModal transactions={transactions} year={year} month={month} onClose={() => setShowChart(false)} />
+      )}
+      {showReport && (
+        <ReportModal transactions={transactions} year={year} month={month} onClose={() => setShowReport(false)} />
+      )}
+      {showSettings && (
+        <SettingsModal onClose={() => setShowSettings(false)} />
       )}
     </div>
   )

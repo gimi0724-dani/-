@@ -24,3 +24,8 @@ export async function deleteTransaction(id: string): Promise<void> {
   const db = await getDB()
   await db.delete('transactions', id)
 }
+
+export async function clearTransactions(): Promise<void> {
+  const db = await getDB()
+  await db.clear('transactions')
+}
