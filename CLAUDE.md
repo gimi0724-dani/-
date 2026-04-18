@@ -67,6 +67,19 @@ npm run preview  # 빌드 결과 미리보기
 - `useSummary` — 월 총 지출/수입/순액 계산
 - `useParser` — 파싱 파이프라인 + merchantMap 조회 통합
 
+### 디자인 시스템
+
+Dribbble 다크 모바일 앱 UI 참고. `src/index.css`에 Tailwind `@theme` 토큰으로 정의:
+
+| 토큰 | 값 | 용도 |
+|------|-----|------|
+| `--color-bg` | `#141414` | 앱 배경 |
+| `--color-card` | `#252525` | 카드/말풍선 배경 |
+| `--color-border` | `#333333` | 구분선 |
+| `--color-orange` | `#ff6500` | 강조, 수입, 버튼 |
+| `--color-text-primary` | `#ffffff` | 주 텍스트 |
+| `--color-text-secondary` | `#9ca3af` | 보조 텍스트 |
+
 ### UI 구조
 
 라우터 없음. 모달로 화면 전환:
@@ -79,12 +92,13 @@ npm run preview  # 빌드 결과 미리보기
 
 ## 개발 계획
 
-### Phase 1 - 프로젝트 기반 설정
-- [ ] Vite + React + TypeScript 프로젝트 초기화
-- [ ] 의존성 설치: `idb`, `recharts`, `tailwindcss`
-- [ ] Tailwind CSS 설정 (다크모드 기본)
-- [ ] `src/types/index.ts` — Transaction, Category, MerchantMap 타입 정의
-- [ ] `src/db/` — IndexedDB 초기화 및 CRUD 함수 (transactions, merchantMap, settings)
+### Phase 1 - 프로젝트 기반 설정 ✅
+- [x] Vite + React + TypeScript 프로젝트 초기화
+- [x] 의존성 설치: `idb`, `recharts`, `tailwindcss`
+- [x] Tailwind CSS + 디자인 시스템 설정
+- [x] `src/types/index.ts` — Transaction, Category, MerchantMap 타입 정의
+- [x] `src/db/` — IndexedDB 초기화 및 CRUD 함수 (transactions, merchantMap, settings)
+- [x] 디자인 시스템 적용 — 다크 `#141414` + 오렌지 `#ff6500` (Dribbble 참고)
 
 ### Phase 2 - 파서 구현
 - [ ] `src/parser/keywords.ts` — 카테고리별 키워드 사전
