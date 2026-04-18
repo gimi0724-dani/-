@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/dani/workspace/내가계부 add CLAUDE.md)",
+      "Bash(git -C /Users/dani/workspace/내가계부 commit -m ' *)",
+      "Bash(git *)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(pkill -f \"vite --port 5173\")"
+    ]
+  }
+}
