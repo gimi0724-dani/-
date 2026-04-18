@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import type { Transaction } from './types'
+import type { Transaction, ParseResult } from './types'
 import { Header } from './components/layout/Header'
 import { ChatFeed } from './components/chat/ChatFeed'
 import { InputBar } from './components/layout/InputBar'
+import { EditModal } from './components/modals/EditModal'
 import { useTransactions } from './hooks/useTransactions'
 import { useSummary } from './hooks/useSummary'
 import { useParser } from './hooks/useParser'
 import { generateId } from './utils/uuid'
-import type { ParseResult } from './types'
 
 export default function App() {
   const now = new Date()
@@ -45,8 +45,18 @@ export default function App() {
     await add(tx)
   }
 
+  async function handleSave(tx: Transaction) {
+    await update(tx)
+    setEditingTx(null)
+  }
+
+  async function handleDelete(id: string) {
+    await remove(id)
+    setEditingTx(null)
+  }
+
   return (
-    <div className="flex flex-col h-full" style={{ background: '#141414' }}>
+    <div className="flex flex-col h-full relative" style={{ background: '#141414' }}>
       <Header
         year={year} month={month}
         income={income} expense={expense} net={net}
@@ -55,21 +65,13 @@ export default function App() {
       />
       <ChatFeed transactions={transactions} onEdit={setEditingTx} />
       <InputBar onSubmit={handleSubmit} />
-      {/* EditModal — Phase 4에서 구현 */}
       {editingTx && (
-        <div
-          className="absolute inset-0 flex items-end justify-center"
-          style={{ background: 'rgba(0,0,0,0.6)' }}
-          onClick={() => setEditingTx(null)}
-        >
-          <div className="w-full rounded-t-2xl p-6" style={{ background: '#252525' }} onClick={e => e.stopPropagation()}>
-            <p className="text-sm mb-1" style={{ color: '#9ca3af' }}>Phase 4에서 수정 기능 추가 예정</p>
-            <p className="font-bold" style={{ color: '#ffffff' }}>{editingTx.merchant}</p>
-            <button className="mt-4 text-sm" style={{ color: '#ff6500' }} onClick={() => remove(editingTx.id).then(() => setEditingTx(null))}>
-              삭제하기
-            </button>
-          </div>
-        </div>
+        <EditModal
+          transaction={editingTx}
+          onSave={handleSave}
+          onDelete={handleDelete}
+          onClose={() => setEditingTx(null)}
+        />
       )}
     </div>
   )

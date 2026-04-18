@@ -12,7 +12,8 @@
       "Bash(pkill -f \"vite --port 5173\")",
       "WebFetch(domain:dribbble.com)",
       "WebFetch(domain:cdn.dribbble.com)",
-      "Bash(pkill -f \"vite --port\")"
+      "Bash(pkill -f \"vite --port\")",
+      "Skill(claude-api)"
     ]
   }
 }
