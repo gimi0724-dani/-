@@ -36,7 +36,7 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
     >
       <div
         className="w-full rounded-t-2xl"
-        style={{ background: '#1e1e1e', paddingTop: 25, paddingLeft: 20, paddingRight: 20, paddingBottom: 40 }}
+        style={{ background: '#1e1e1e', paddingTop: 22, paddingLeft: 20, paddingRight: 20, paddingBottom: 40 }}
         onClick={e => e.stopPropagation()}
       >
         {/* 헤더 */}
@@ -75,7 +75,7 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
         </div>
 
         {/* 카테고리 */}
-        <div style={{ marginBottom: 22 }}>
+        <div style={{ marginBottom: 18 }}>
           <p className="text-xs" style={{ color: '#6b7280', marginBottom: 8, paddingLeft: 3 }}>카테고리</p>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map(cat => (
@@ -86,7 +86,7 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
                 style={{
                   background: category === cat ? '#ff6500' : '#333333',
                   color: category === cat ? '#ffffff' : '#9ca3af',
-                  paddingLeft: 15, paddingRight: 15, paddingTop: 9, paddingBottom: 9,
+                  paddingLeft: 15, paddingRight: 15, paddingTop: 7, paddingBottom: 7,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}
               >
@@ -100,15 +100,15 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
         <div className="flex gap-2">
           <button
             onClick={() => onDelete(transaction.id)}
-            className="flex-1 py-3 rounded-xl text-sm font-semibold"
-            style={{ background: '#333333', color: '#ef4444' }}
+            className="flex-1 rounded-xl text-sm font-semibold"
+            style={{ background: '#333333', color: '#ef4444', paddingTop: 14, paddingBottom: 14 }}
           >
             삭제
           </button>
           <button
             onClick={handleSave}
             className="flex-2 py-3 rounded-xl text-sm font-semibold"
-            style={{ background: '#ff6500', color: '#ffffff', flex: 2 }}
+            style={{ background: '#ff6500', color: '#ffffff', flex: 2, paddingTop: 14, paddingBottom: 14 }}
           >
             저장
           </button>

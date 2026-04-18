@@ -12,7 +12,7 @@ export function TransactionBubble({ transaction: tx, onEdit }: Props) {
   const emoji = CATEGORY_EMOJI[tx.category]
 
   return (
-    <div className="flex justify-end px-4" style={{ marginBottom: 12 }}>
+    <div className="flex justify-end px-4" style={{ marginBottom: 8 }}>
       <button
         onClick={() => onEdit(tx)}
         className="text-left rounded-2xl rounded-tr-sm max-w-[80%] active:opacity-70 transition-opacity" style={{ background: '#252525', padding: 12, paddingTop: 10, paddingBottom: 10 }}
@@ -22,12 +22,14 @@ export function TransactionBubble({ transaction: tx, onEdit }: Props) {
             {emoji} {tx.category}
           </span>
         </div>
-        <p className="font-semibold text-sm" style={{ color: '#ffffff' }}>
-          {tx.merchant}{tx.memo ? ` · ${tx.memo}` : ''}
-        </p>
-        <p className="text-base font-bold mt-0.5" style={{ color: isIncome ? '#ff6500' : '#ffffff' }}>
-          {isIncome ? '+' : '-'}{formatAmount(tx.amount)}
-        </p>
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="font-semibold text-sm" style={{ color: '#ffffff' }}>
+            {tx.merchant}{tx.memo ? ` · ${tx.memo}` : ''}
+          </p>
+          <p className="text-base font-bold shrink-0" style={{ color: isIncome ? '#ff6500' : '#ffffff' }}>
+            {isIncome ? '+' : '-'}{formatAmount(tx.amount)}
+          </p>
+        </div>
       </button>
     </div>
   )
