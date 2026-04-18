@@ -37,17 +37,17 @@ export function InputBar({ onSubmit }: Props) {
           value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder="스타벅스 아아 4500"
-          className="flex-1 rounded-full px-4 py-2.5 text-sm outline-none"
-          style={{ background: '#252525', color: '#ffffff' }}
+          placeholder="또 어디 썼니?"
+          className="flex-1 rounded-full text-sm outline-none h-8"
+          style={{ background: '#252525', color: '#ffffff', paddingLeft: 21, paddingRight: 16 }}
         />
         <button
           onClick={handleSubmit}
           disabled={!preview || preview.amount === 0}
-          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-opacity disabled:opacity-30"
+          className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-opacity disabled:opacity-30"
           style={{ background: '#ff6500' }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
             <path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
