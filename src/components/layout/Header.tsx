@@ -54,15 +54,15 @@ export function Header({ year, month, income, expense, net, onPrev, onNext, onCh
 
       {/* 월 요약 */}
       <div className="flex gap-3">
-        <div className="flex-1 rounded-xl" style={{ background: '#252525', paddingLeft: 27, paddingRight: 12, paddingTop: 25, paddingBottom: 25 }}>
+        <div className="flex-1 rounded-xl" style={{ background: '#252525', paddingLeft: 19, paddingRight: 12, paddingTop: 17, paddingBottom: 17 }}>
           <p className="text-xs mb-0.5" style={{ color: '#6b7280' }}>지출</p>
           <p className="font-bold text-sm" style={{ color: '#ffffff' }}>{formatAmount(expense)}</p>
         </div>
-        <div className="flex-1 rounded-xl" style={{ background: '#252525', paddingLeft: 27, paddingRight: 12, paddingTop: 25, paddingBottom: 25 }}>
+        <div className="flex-1 rounded-xl" style={{ background: '#252525', paddingLeft: 19, paddingRight: 12, paddingTop: 17, paddingBottom: 17 }}>
           <p className="text-xs mb-0.5" style={{ color: '#6b7280' }}>수입</p>
           <p className="font-bold text-sm" style={{ color: '#ff6500' }}>{formatAmount(income)}</p>
         </div>
-        <div className="flex-1 rounded-xl" style={{ background: '#252525', paddingLeft: 27, paddingRight: 12, paddingTop: 25, paddingBottom: 25 }}>
+        <div className="flex-1 rounded-xl" style={{ background: '#252525', paddingLeft: 19, paddingRight: 12, paddingTop: 17, paddingBottom: 17 }}>
           <p className="text-xs mb-0.5" style={{ color: '#6b7280' }}>순액</p>
           <p className="font-bold text-sm" style={{ color: net >= 0 ? '#ff6500' : '#ef4444' }}>
             {net >= 0 ? '+' : ''}{formatAmount(net)}
