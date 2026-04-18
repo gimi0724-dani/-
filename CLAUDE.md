@@ -74,3 +74,45 @@ npm run preview  # 빌드 결과 미리보기
 - **ChatFeed** — 말풍선 스크롤 피드, 날짜 구분선 포함, 최신이 맨 아래
 - **InputBar** — 하단 고정, 타이핑 중 ParsePreview로 실시간 파싱 결과 표시
 - **EditModal** — 거래 수정 시 카테고리 변경 → merchantMap 자동 학습
+
+---
+
+## 개발 계획
+
+### Phase 1 - 프로젝트 기반 설정
+- [ ] Vite + React + TypeScript 프로젝트 초기화
+- [ ] 의존성 설치: `idb`, `recharts`, `tailwindcss`
+- [ ] Tailwind CSS 설정 (다크모드 기본)
+- [ ] `src/types/index.ts` — Transaction, Category, MerchantMap 타입 정의
+- [ ] `src/db/` — IndexedDB 초기화 및 CRUD 함수 (transactions, merchantMap, settings)
+
+### Phase 2 - 파서 구현
+- [ ] `src/parser/keywords.ts` — 카테고리별 키워드 사전
+- [ ] `src/parser/extractAmount.ts` — 금액 정규식 추출
+- [ ] `src/parser/extractMerchant.ts` — 상호명/메모 분리
+- [ ] `src/parser/classifyCategory.ts` — 키워드 사전 매칭
+- [ ] `src/parser/index.ts` — 파이프라인 조합 (merchantMap 우선)
+
+### Phase 3 - 핵심 UI
+- [ ] `App.tsx` — 전체 레이아웃 (Header + ChatFeed + InputBar)
+- [ ] `components/layout/InputBar.tsx` — 하단 고정 입력창 + 전송 로직
+- [ ] `components/chat/TransactionBubble.tsx` — 개별 거래 말풍선
+- [ ] `components/chat/ChatFeed.tsx` — 스크롤 피드 + DateDivider
+- [ ] `components/layout/Header.tsx` — 월 요약 + 월 이동 버튼
+- [ ] `components/chat/ParsePreview.tsx` — 타이핑 중 실시간 파싱 미리보기
+
+### Phase 4 - 학습 기능 + 수정
+- [ ] `components/modals/EditModal.tsx` — 카테고리/금액/메모 수정 UI
+- [ ] `src/hooks/useParser.ts` — merchantMap 조회 + 파싱 통합
+- [ ] 수정 시 merchantMap 자동 업데이트 연결
+
+### Phase 5 - 리포트 및 차트
+- [ ] `src/hooks/useSummary.ts` — 월별 집계 계산
+- [ ] `components/modals/ChartModal.tsx` — Recharts 파이차트 + 바차트
+- [ ] `components/modals/ReportModal.tsx` — 월별 텍스트 요약
+- [ ] `components/modals/SettingsModal.tsx` — 설정 화면
+
+### Phase 6 - 마무리
+- [ ] `public/manifest.json` + 아이콘 — PWA 설정
+- [ ] 반응형 조정 — 모바일 375px 키보드 대응 (InputBar)
+- [ ] 빈 상태 UI — 첫 진입 안내 화면
