@@ -29,7 +29,7 @@ export function InputBar({ onSubmit }: Props) {
   }
 
   return (
-    <div className="shrink-0 pb-safe pt-[6px]" style={{ borderTop: '1px solid #333333' }}>
+    <div className="shrink-0 pb-safe pt-2" style={{ borderTop: '1px solid #333333' }}>
       <ParsePreview result={preview} />
       <div className="flex items-center gap-2 px-3 py-3">
         <input
