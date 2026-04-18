@@ -35,57 +35,59 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
       onClick={onClose}
     >
       <div
-        className="w-full rounded-t-2xl p-5 pb-8"
-        style={{ background: '#1e1e1e' }}
+        className="w-full rounded-t-2xl"
+        style={{ background: '#1e1e1e', paddingTop: 25, paddingLeft: 20, paddingRight: 20, paddingBottom: 40 }}
         onClick={e => e.stopPropagation()}
       >
         {/* 헤더 */}
-        <div className="flex items-center justify-between mb-4">
-          <p className="font-bold text-base p-[5px]" style={{ color: '#ffffff' }}>
+        <div className="flex items-center justify-between" style={{ marginBottom: 18 }}>
+          <p className="font-bold text-base" style={{ color: '#ffffff', paddingLeft: 3 }}>
             {transaction.merchant}
           </p>
-          <p className="text-sm p-[5px]" style={{ color: '#9ca3af' }}>
+          <p className="text-sm" style={{ color: '#9ca3af', paddingRight: 3 }}>
             {formatAmount(transaction.amount)}
           </p>
         </div>
 
         {/* 금액 */}
-        <div className="mb-4">
-          <p className="text-xs mb-1 p-[5px]" style={{ color: '#6b7280' }}>금액</p>
+        <div style={{ marginBottom: 18 }}>
+          <p className="text-xs" style={{ color: '#6b7280', marginBottom: 4, paddingLeft: 3 }}>금액</p>
           <input
             type="number"
             value={amount}
             onChange={e => setAmount(e.target.value)}
-            className="w-full rounded-xl px-3 py-2 text-sm outline-none"
-            style={{ background: '#252525', color: '#ffffff' }}
+            className="w-full rounded-xl text-sm outline-none"
+            style={{ background: '#252525', color: '#ffffff', paddingLeft: 12, paddingRight: 12, paddingTop: 9, paddingBottom: 10, display: 'flex', alignItems: 'center' }}
           />
         </div>
 
         {/* 메모 */}
-        <div className="mb-4">
-          <p className="text-xs mb-1 p-[5px]" style={{ color: '#6b7280' }}>메모</p>
+        <div style={{ marginBottom: 18 }}>
+          <p className="text-xs" style={{ color: '#6b7280', marginBottom: 4, paddingLeft: 3 }}>메모</p>
           <input
             type="text"
             value={memo}
             onChange={e => setMemo(e.target.value)}
-            className="w-full rounded-xl px-3 py-2 text-sm outline-none"
-            style={{ background: '#252525', color: '#ffffff' }}
+            className="w-full rounded-xl text-sm outline-none"
+            style={{ background: '#252525', color: '#ffffff', paddingLeft: 12, paddingRight: 12, paddingTop: 9, paddingBottom: 10, display: 'flex', alignItems: 'center' }}
             placeholder="메모 없음"
           />
         </div>
 
         {/* 카테고리 */}
-        <div className="mb-5">
-          <p className="text-xs mb-2 p-[5px]" style={{ color: '#6b7280' }}>카테고리</p>
+        <div style={{ marginBottom: 22 }}>
+          <p className="text-xs" style={{ color: '#6b7280', marginBottom: 8, paddingLeft: 3 }}>카테고리</p>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
                 onClick={() => setCategory(cat)}
-                className="px-[14px] py-[8px] rounded-full text-xs transition-all"
+                className="rounded-full text-xs transition-all"
                 style={{
                   background: category === cat ? '#ff6500' : '#333333',
                   color: category === cat ? '#ffffff' : '#9ca3af',
+                  paddingLeft: 15, paddingRight: 15, paddingTop: 9, paddingBottom: 9,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}
               >
                 {CATEGORY_EMOJI[cat]} {cat}
