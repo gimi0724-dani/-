@@ -36,19 +36,23 @@ export default function App() {
   }
 
   async function handleSubmit(input: string, _parsed: ParseResult) {
-    const result = await parseInput(input)
-    const tx: Transaction = {
-      id: generateId(),
-      date: new Date(),
-      amount: result.amount,
-      type: result.type,
-      category: result.category,
-      merchant: result.merchant,
-      memo: result.memo,
-      rawInput: input,
-      createdAt: new Date(),
+    try {
+      const result = await parseInput(input)
+      const tx: Transaction = {
+        id: generateId(),
+        date: new Date(),
+        amount: result.amount,
+        type: result.type,
+        category: result.category,
+        merchant: result.merchant,
+        memo: result.memo,
+        rawInput: input,
+        createdAt: new Date(),
+      }
+      await add(tx)
+    } catch (e) {
+      console.error('handleSubmit failed:', e)
     }
-    await add(tx)
   }
 
   async function handleSave(tx: Transaction) {

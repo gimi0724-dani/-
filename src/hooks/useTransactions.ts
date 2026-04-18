@@ -14,8 +14,17 @@ export function useTransactions(year: number, month: number) {
   useEffect(() => { load() }, [load])
 
   const add = useCallback(async (tx: Transaction) => {
-    await addTransaction(tx)
-    await load()
+    setTransactions(prev => {
+      const updated = [...prev, tx]
+      updated.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      return updated
+    })
+    try {
+      await addTransaction(tx)
+    } catch (e) {
+      console.error('Failed to save transaction:', e)
+      await load()
+    }
   }, [load])
 
   const update = useCallback(async (tx: Transaction) => {
