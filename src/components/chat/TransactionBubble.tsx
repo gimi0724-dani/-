@@ -15,7 +15,7 @@ export function TransactionBubble({ transaction: tx, onEdit }: Props) {
     <div className="flex justify-end px-4 mb-2">
       <button
         onClick={() => onEdit(tx)}
-        className="text-left rounded-2xl rounded-tr-sm max-w-[80%] active:opacity-70 transition-opacity" style={{ background: '#252525', padding: 23, paddingTop: 19, paddingBottom: 19 }}
+        className="text-left rounded-2xl rounded-tr-sm max-w-[80%] active:opacity-70 transition-opacity" style={{ background: '#252525', padding: 12, paddingTop: 10, paddingBottom: 10 }}
       >
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#333333', color: '#9ca3af' }}>
