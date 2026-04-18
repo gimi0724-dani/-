@@ -13,7 +13,8 @@
       "WebFetch(domain:dribbble.com)",
       "WebFetch(domain:cdn.dribbble.com)",
       "Bash(pkill -f \"vite --port\")",
-      "Skill(claude-api)"
+      "Skill(claude-api)",
+      "Bash(ipconfig getifaddr *)"
     ]
   }
 }

@@ -3,12 +3,26 @@ import type { ParseResult, Category } from '../types'
 import { CATEGORIES } from '../types'
 
 const CATEGORY_LIST = CATEGORIES.join(', ')
+const API_URL = import.meta.env.VITE_API_URL as string | undefined
 
-export async function llmParse(input: string, apiKey: string): Promise<ParseResult | null> {
-  if (!apiKey) return null
+// Railway 프록시를 통해 파싱 (프로덕션)
+async function parseViaProxy(input: string): Promise<ParseResult | null> {
+  try {
+    const res = await fetch(`${API_URL}/api/parse`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ input }),
+    })
+    if (!res.ok) return null
+    return await res.json() as ParseResult
+  } catch {
+    return null
+  }
+}
 
+// 브라우저에서 직접 호출 (로컬 개발용, localStorage API 키 사용)
+async function parseDirectly(input: string, apiKey: string): Promise<ParseResult | null> {
   const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true })
-
   const prompt = `한국어 가계부 입력을 분석해서 JSON으로만 응답해. 다른 텍스트 없이 JSON만.
 
 입력: "${input}"
@@ -33,25 +47,20 @@ export async function llmParse(input: string, apiKey: string): Promise<ParseResu
       max_tokens: 200,
       messages: [{ role: 'user', content: prompt }],
     })
-
     const text = message.content[0].type === 'text' ? message.content[0].text : ''
     const jsonMatch = text.match(/\{[\s\S]*\}/)
     if (!jsonMatch) return null
-
     const parsed = JSON.parse(jsonMatch[0])
-
     const category: Category = CATEGORIES.includes(parsed.category) ? parsed.category : '기타'
     const amount = typeof parsed.amount === 'number' ? parsed.amount : parseInt(String(parsed.amount).replace(/\D/g, ''), 10) || 0
-    const type = parsed.type === 'income' ? 'income' : 'expense'
-
-    return {
-      merchant: String(parsed.merchant ?? ''),
-      amount,
-      type,
-      category,
-      memo: String(parsed.memo ?? ''),
-    }
+    return { merchant: String(parsed.merchant ?? ''), amount, type: parsed.type === 'income' ? 'income' : 'expense', category, memo: String(parsed.memo ?? '') }
   } catch {
     return null
   }
+}
+
+export async function llmParse(input: string, apiKey: string): Promise<ParseResult | null> {
+  if (API_URL) return parseViaProxy(input)
+  if (apiKey) return parseDirectly(input, apiKey)
+  return null
 }
