@@ -33,7 +33,7 @@ export function SettingsModal({ onClose }: Props) {
         </div>
 
         {/* 앱 정보 */}
-        <div className="rounded-xl mb-4" style={{ background: '#252525', padding: 16 }}>
+        <div className="rounded-xl" style={{ background: '#252525', padding: 16, marginBottom: 2 }}>
           <p className="text-sm font-semibold mb-1" style={{ color: '#ffffff' }}>내가계부</p>
           <p className="text-xs" style={{ color: '#6b7280' }}>로컬 저장 · 백엔드 없음 · IndexedDB</p>
         </div>
