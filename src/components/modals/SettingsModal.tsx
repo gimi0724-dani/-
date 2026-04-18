@@ -27,7 +27,7 @@ export function SettingsModal({ onClose }: Props) {
         style={{ background: '#1e1e1e', paddingTop: 20, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}
         onClick={e => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between" style={{ marginBottom: 8 }}>
           <p className="font-bold text-base" style={{ color: '#ffffff' }}>설정</p>
           <button onClick={onClose} style={{ color: '#9ca3af', fontSize: 20, lineHeight: 1 }}>✕</button>
         </div>
@@ -41,7 +41,7 @@ export function SettingsModal({ onClose }: Props) {
         {/* 데이터 초기화 */}
         <div className="rounded-xl" style={{ background: '#252525', padding: 16 }}>
           <p className="text-sm font-semibold mb-1" style={{ color: '#ffffff' }}>데이터 관리</p>
-          <p className="text-xs" style={{ color: '#6b7280', marginBottom: 4 }}>모든 거래 내역을 삭제합니다. 되돌릴 수 없습니다.</p>
+          <p className="text-xs" style={{ color: '#6b7280', marginBottom: 8 }}>모든 거래 내역을 삭제합니다. 되돌릴 수 없습니다.</p>
           <button
             onClick={handleClearData}
             className="w-full rounded-xl text-sm font-semibold"
