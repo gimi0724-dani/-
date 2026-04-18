@@ -36,7 +36,7 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
     >
       <div
         className="w-full rounded-t-2xl"
-        style={{ background: '#1e1e1e', paddingTop: 22, paddingLeft: 20, paddingRight: 20, paddingBottom: 40 }}
+        style={{ background: '#1e1e1e', paddingTop: 12, paddingLeft: 20, paddingRight: 20, paddingBottom: 40 }}
         onClick={e => e.stopPropagation()}
       >
         {/* 헤더 */}
@@ -101,14 +101,14 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
           <button
             onClick={() => onDelete(transaction.id)}
             className="flex-1 rounded-xl text-sm font-semibold"
-            style={{ background: '#333333', color: '#ef4444', paddingTop: 14, paddingBottom: 14 }}
+            style={{ background: '#333333', color: '#ef4444', paddingTop: 10, paddingBottom: 10 }}
           >
             삭제
           </button>
           <button
             onClick={handleSave}
             className="flex-2 py-3 rounded-xl text-sm font-semibold"
-            style={{ background: '#ff6500', color: '#ffffff', flex: 2, paddingTop: 14, paddingBottom: 14 }}
+            style={{ background: '#ff6500', color: '#ffffff', flex: 2, paddingTop: 10, paddingBottom: 10 }}
           >
             저장
           </button>
