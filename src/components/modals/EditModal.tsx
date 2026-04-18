@@ -41,17 +41,17 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
       >
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-4">
-          <p className="font-bold text-base p-[3px]" style={{ color: '#ffffff' }}>
+          <p className="font-bold text-base p-[5px]" style={{ color: '#ffffff' }}>
             {transaction.merchant}
           </p>
-          <p className="text-sm p-[3px]" style={{ color: '#9ca3af' }}>
+          <p className="text-sm p-[5px]" style={{ color: '#9ca3af' }}>
             {formatAmount(transaction.amount)}
           </p>
         </div>
 
         {/* 금액 */}
         <div className="mb-4">
-          <p className="text-xs mb-1 p-[3px]" style={{ color: '#6b7280' }}>금액</p>
+          <p className="text-xs mb-1 p-[5px]" style={{ color: '#6b7280' }}>금액</p>
           <input
             type="number"
             value={amount}
@@ -63,7 +63,7 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
 
         {/* 메모 */}
         <div className="mb-4">
-          <p className="text-xs mb-1 p-[3px]" style={{ color: '#6b7280' }}>메모</p>
+          <p className="text-xs mb-1 p-[5px]" style={{ color: '#6b7280' }}>메모</p>
           <input
             type="text"
             value={memo}
@@ -76,13 +76,13 @@ export function EditModal({ transaction, onSave, onDelete, onClose }: Props) {
 
         {/* 카테고리 */}
         <div className="mb-5">
-          <p className="text-xs mb-2 p-[3px]" style={{ color: '#6b7280' }}>카테고리</p>
+          <p className="text-xs mb-2 p-[5px]" style={{ color: '#6b7280' }}>카테고리</p>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
                 onClick={() => setCategory(cat)}
-                className="px-3 py-1.5 rounded-full text-xs transition-all"
+                className="px-[14px] py-[8px] rounded-full text-xs transition-all"
                 style={{
                   background: category === cat ? '#ff6500' : '#333333',
                   color: category === cat ? '#ffffff' : '#9ca3af',

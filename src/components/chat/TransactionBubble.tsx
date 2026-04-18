@@ -12,7 +12,7 @@ export function TransactionBubble({ transaction: tx, onEdit }: Props) {
   const emoji = CATEGORY_EMOJI[tx.category]
 
   return (
-    <div className="flex justify-end px-4 mb-[3px]">
+    <div className="flex justify-end px-4 mb-[5px]">
       <button
         onClick={() => onEdit(tx)}
         className="text-left rounded-2xl rounded-tr-sm max-w-[80%] active:opacity-70 transition-opacity" style={{ background: '#252525', padding: 12, paddingTop: 10, paddingBottom: 10 }}
