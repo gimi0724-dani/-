@@ -38,8 +38,8 @@ export function InputBar({ onSubmit }: Props) {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder="또 어디 썼니?"
-          className="flex-1 rounded-full text-sm outline-none h-8"
-          style={{ background: '#252525', color: '#ffffff', paddingLeft: 21, paddingRight: 16 }}
+          className="flex-1 rounded-full outline-none h-8"
+          style={{ background: '#252525', color: '#ffffff', paddingLeft: 21, paddingRight: 16, fontSize: 16 }}
         />
         <button
           onClick={handleSubmit}
