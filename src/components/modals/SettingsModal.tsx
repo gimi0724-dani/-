@@ -24,7 +24,7 @@ export function SettingsModal({ onClose }: Props) {
     >
       <div
         className="w-full rounded-t-2xl"
-        style={{ background: '#1e1e1e', paddingTop: 20, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}
+        style={{ background: '#1e1e1e', paddingTop: 12, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between" style={{ marginBottom: 8 }}>
