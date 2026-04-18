@@ -20,7 +20,7 @@ export function Header({ year, month, income, expense, net, onPrev, onNext, onCh
   })()
 
   return (
-    <div className="shrink-0 px-4 pt-4 pb-[3px]" style={{ borderBottom: '1px solid #333333' }}>
+    <div className="shrink-0 px-4 pt-4 pb-[6px]" style={{ borderBottom: '1px solid #333333' }}>
       {/* 월 이동 + 우상단 버튼 */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
