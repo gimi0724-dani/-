@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { clearTransactions } from '../../db/transactions'
+import { API_KEY_STORAGE } from '../../hooks/useParser'
 
 interface Props {
   onClose: () => void
@@ -7,6 +8,14 @@ interface Props {
 
 export function SettingsModal({ onClose }: Props) {
   const [confirming, setConfirming] = useState(false)
+  const [apiKey, setApiKey] = useState(localStorage.getItem(API_KEY_STORAGE) ?? '')
+  const [saved, setSaved] = useState(false)
+
+  function handleSaveApiKey() {
+    localStorage.setItem(API_KEY_STORAGE, apiKey.trim())
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2000)
+  }
 
   async function handleClearData() {
     if (!confirming) { setConfirming(true); return }
@@ -36,6 +45,29 @@ export function SettingsModal({ onClose }: Props) {
         <div className="rounded-xl" style={{ background: '#252525', padding: 16, marginBottom: 4 }}>
           <p className="text-sm font-semibold mb-1" style={{ color: '#ffffff' }}>내가계부</p>
           <p className="text-xs" style={{ color: '#6b7280' }}>로컬 저장 · 백엔드 없음 · IndexedDB</p>
+        </div>
+
+        {/* Claude API 키 */}
+        <div className="rounded-xl" style={{ background: '#252525', padding: 16, marginBottom: 4 }}>
+          <p className="text-sm font-semibold mb-1" style={{ color: '#ffffff' }}>Claude API Key</p>
+          <p className="text-xs" style={{ color: '#6b7280', marginBottom: 8 }}>
+            로컬 파서 실패 시(금액 미인식, 기타 카테고리) LLM 폴백으로 사용됩니다.
+          </p>
+          <input
+            type="password"
+            value={apiKey}
+            onChange={e => { setApiKey(e.target.value); setSaved(false) }}
+            placeholder="sk-ant-..."
+            className="w-full rounded-xl outline-none text-sm"
+            style={{ background: '#333333', color: '#ffffff', padding: 10, fontSize: 14, marginBottom: 8 }}
+          />
+          <button
+            onClick={handleSaveApiKey}
+            className="w-full rounded-xl text-sm font-semibold"
+            style={{ background: saved ? '#22c55e' : '#ff6500', color: '#ffffff', paddingTop: 10, paddingBottom: 10 }}
+          >
+            {saved ? '저장됨 ✓' : '저장'}
+          </button>
         </div>
 
         {/* 데이터 초기화 */}
