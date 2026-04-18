@@ -33,7 +33,7 @@ export function SettingsModal({ onClose }: Props) {
         </div>
 
         {/* 앱 정보 */}
-        <div className="rounded-xl" style={{ background: '#252525', padding: 16, marginBottom: 2 }}>
+        <div className="rounded-xl" style={{ background: '#252525', padding: 16, marginBottom: 4 }}>
           <p className="text-sm font-semibold mb-1" style={{ color: '#ffffff' }}>내가계부</p>
           <p className="text-xs" style={{ color: '#6b7280' }}>로컬 저장 · 백엔드 없음 · IndexedDB</p>
         </div>
@@ -41,7 +41,7 @@ export function SettingsModal({ onClose }: Props) {
         {/* 데이터 초기화 */}
         <div className="rounded-xl" style={{ background: '#252525', padding: 16 }}>
           <p className="text-sm font-semibold mb-1" style={{ color: '#ffffff' }}>데이터 관리</p>
-          <p className="text-xs mb-3" style={{ color: '#6b7280' }}>모든 거래 내역을 삭제합니다. 되돌릴 수 없습니다.</p>
+          <p className="text-xs" style={{ color: '#6b7280', marginBottom: 4 }}>모든 거래 내역을 삭제합니다. 되돌릴 수 없습니다.</p>
           <button
             onClick={handleClearData}
             className="w-full rounded-xl text-sm font-semibold"
