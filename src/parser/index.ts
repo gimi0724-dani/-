@@ -34,7 +34,3 @@ export function parse(input: string, learnedCategory?: Category | null): ParseRe
   return { merchant, amount, type, category, memo }
 }
 
-// 브라우저 콘솔 검증용
-if (typeof window !== 'undefined') {
-  ;(window as unknown as Record<string, unknown>).parse = parse
-}
